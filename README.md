@@ -2,14 +2,20 @@
 # AndroRAT 
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
-[![Twitter Follow](https://img.shields.io/twitter/follow/karma9874?label=Follow&style=social)](https://twitter.com/karma9874)
-[![GitHub followers](https://img.shields.io/github/followers/karma9874?label=Follow&style=social)](https://github.com/karma9874)
+[![GitHub followers](https://img.shields.io/github/followers/Prash9-coder?label=Follow&style=social)](https://github.com/Prash9-coder)
 
 AndroRAT is a tool designed to give the control of the android system remotely and retrieve informations from it. Androrat is a client/server application developed in Java Android for the client side and the Server is in Python.
 
-##### AndroRAT will work on device from Android 4.1 (Jelly Bean) to Android 9.0 (Oreo) (API 16 to API 28)
+##### AndroRAT now supports Android 4.1 (Jelly Bean) to Android 15 (API 16 to API 35)
 
-> AndroRAT also works on Android 10 (Q) but some of the interpreter command will be unstable. 
+> **Updated for Android 15 Compatibility:** This fork includes full Android 15 support with updated SDK configurations, Kotlin 1.9.22, and Java 17 compatibility.
+
+## What's New in This Fork
+* ✅ **Android 15 (API 35) Support** - Updated `compileSdkVersion`, `targetSdkVersion`, and `buildToolsVersion`
+* ✅ **Java 17 Compatibility** - Configured Java toolchain for modern development
+* ✅ **Kotlin 1.9.22** - Fixed Kotlin stdlib dependency conflicts
+* ✅ **Updated Dependencies** - Latest AndroidX and Kotlin coroutines libraries
+* ✅ **Gradle 8.11.1** - Modern build system with improved performance 
 
 ## Screenshots
 
@@ -26,14 +32,35 @@ AndroRAT is a tool designed to give the control of the android system remotely a
 
 
 ## Prerequisites
-AndroRAT requires Python3 and JAVA (or Android Studio)
+* **Python 3.x** - For the server-side control panel
+* **Java 17 LTS** - Required for building the Android APK
+* **Android SDK** - Command Line Tools or Android Studio
+* **Gradle** - Included via Gradle wrapper in the project
 
 ## Installation
-```
-git clone https://github.com/karma9874/AndroRAT.git
+```bash
+git clone https://github.com/Prash9-coder/AndroRAT.git
 cd AndroRAT
 pip install -r requirements.txt
 ```
+
+### Setting up Android SDK (for manual building)
+1. **Install Java 17:**
+   - Download from [Oracle](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) or [Adoptium](https://adoptium.net/)
+   - Set `JAVA_HOME` environment variable
+
+2. **Install Android SDK:**
+   - Download Android Command Line Tools from [Android Developer Site](https://developer.android.com/studio#command-tools)
+   - Extract to `C:\Android\Sdk` (Windows) or `~/Android/Sdk` (Linux/Mac)
+   - Run `sdkmanager --licenses` to accept licenses
+   - Install required components:
+     ```bash
+     sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+     ```
+
+3. **Configure local.properties:**
+   - Create `Android_Code/local.properties` file
+   - Add: `sdk.dir=C:\\Android\\Sdk` (Windows) or `sdk.dir=/home/user/Android/Sdk` (Linux/Mac)
 #### Note: 
 While cloning the repository using Git bash on Windows, you may get the following error:
 > error: unable to create file \<filename>: Filename too long
@@ -78,6 +105,16 @@ Usage:
 ```
 
 Or you can manually build the apk by importing [Android Code](Android_Code) folder to Android Studio and changing the IP address and port number in [config.java](Android_Code/app/src/main/java/com/example/reverseshell2/config.java) file and then you can generate the signed apk from `Android Studio -> Build -> Generate Signed APK(s)`
+
+**Using Gradle Command Line (Recommended):**
+```bash
+cd Android_Code
+# For Windows:
+.\gradlew assembleRelease
+# For Linux/Mac:
+./gradlew assembleRelease
+```
+The APK will be generated at: `Android_Code/app/build/outputs/apk/release/app-release-unsigned.apk`
 ### `shell` mode
 ```
 Usage:
@@ -144,9 +181,19 @@ In the sh shell there are some sub commands
 
 ## TODO
 * ~~Ngrok support~~
+* ~~Android 15 compatibility~~
 * Set up multi client
 * Add screenshot command
+* Enhanced encryption for communication
 
+## Contributing
+This is a fork of the original [karma9874/AndroRAT](https://github.com/karma9874/AndroRAT) project with Android 15 compatibility updates and modern build system improvements.
+
+Feel free to submit pull requests or report issues!
+
+## Credits
+* **Original Author:** [karma9874](https://github.com/karma9874)
+* **This Fork:** [Prash9-coder](https://github.com/Prash9-coder) - Android 15 compatibility and build system updates
 
 ## License
 AndroRAT is licensed under MIT license take a look at the [LICENSE](LICENSE) for more information.
