@@ -2,3 +2,21 @@
 /Dumps
 /karma.apk
 /test.py
+
+# Android Studio and Gradle
+Android_Code/.gradle/
+Android_Code/.idea/
+Android_Code/local.properties
+Android_Code/build/
+Android_Code/app/build/
+Android_Code/app/release/
+*.iml
+*.apk
+*.ap_
+*.aab
+
+# Temporary files
+setup-android-sdk.bat
+
+# SDK location
+C:/Android/
