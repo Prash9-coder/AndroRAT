@@ -41,4 +41,24 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    
+    // Force consistent Kotlin version to avoid duplicate class errors
+    // Kotlin 1.8+ includes jdk7 and jdk8 classes in the main stdlib
+    constraints {
+        implementation('org.jetbrains.kotlin:kotlin-stdlib-jdk7') {
+            because 'kotlin-stdlib-jdk7 is now part of kotlin-stdlib'
+        }
+        implementation('org.jetbrains.kotlin:kotlin-stdlib-jdk8') {
+            because 'kotlin-stdlib-jdk8 is now part of kotlin-stdlib'
+        }
+    }
+    
+    // Explicitly exclude older separate jdk7/jdk8 libraries from all dependencies
+    configurations.all {
+        resolutionStrategy {
+            force 'org.jetbrains.kotlin:kotlin-stdlib:1.9.22'
+            force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.22'
+            force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.22'
+        }
+    }
 }
